@@ -10,10 +10,14 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
+
       - name: Set up Kubectl
         uses: azure/k8s-set-context@v1
         with:
+          method: kubeconfig
+          context: current-context
           kubeconfig: ${{ secrets.KUBECONFIG }}
+
       - name: Deploy
         run: |
           kubectl apply -f deployment.yaml
