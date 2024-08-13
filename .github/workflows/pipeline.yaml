@@ -15,7 +15,7 @@ jobs:
         uses: azure/k8s-set-context@v1
         with:
           method: kubeconfig
-          context: default
+          #context: default
           kubeconfig: ${{ secrets.KUBECONFIG }}
 
       - name: Deploy
