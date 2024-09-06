@@ -10,8 +10,8 @@ jobs:
     steps:
       - name: Deploy
         run: |
-              argocd login 10.89.0.2:31423 --insecure --username "${env.user}" --password "${env.pass}"
+              argocd login 10.89.0.2:31423 --insecure --username ${{ secrets.ARGO_USER }} --password ${{ secrets.ARGO_PASS }}
         env:
-          GIT_USERNAME: ${{ secrets.ARGO_USER }}
-          GIT_PASSWORD: ${{ secrets.ARGO_PASS }}
+          ARGO_USER: ${{ secrets.ARGO_USER }}
+          ARGO_PASS: ${{ secrets.ARGO_PASS }}
               
