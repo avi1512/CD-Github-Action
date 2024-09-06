@@ -8,16 +8,10 @@ jobs:
   deploy:
     runs-on: self-hosted
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Set up Kubectl
-        uses: azure/k8s-set-context@v1
-        with:
-          method: kubeconfig
-          #context: default
-          kubeconfig: ${{ secrets.KUBECONFIG }}
-
       - name: Deploy
         run: |
-          kubectl apply -f deployment.yaml
+              argocd login 10.89.0.2:31423 --insecure --username "${env.user}" --password "${env.pass}"
+        env:
+          GIT_USERNAME: ${{ secrets.ARGO_USER }}
+          GIT_PASSWORD: ${{ secrets.ARGO_PASS }}
+              
